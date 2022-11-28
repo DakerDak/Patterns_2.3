@@ -39,12 +39,12 @@ public class Patterns {
         $x("//*[text()=\"Успешно!\"]").should(Condition.visible, Duration.ofSeconds(15));
         $x("//*[text()=\"Встреча успешно запланирована на \"]").shouldHave(Condition.text("Встреча успешно запланирована на " + firstMeetingDate), Duration.ofSeconds(15));
 
+        $("[data-test-id=\"date\"] [placeholder='Дата встречи']").doubleClick().sendKeys(Keys.DELETE);
+        $("[data-test-id=\"date\"] [placeholder='Дата встречи']").setValue(secondMeetingDate);
         $(".button_size_m ").click();
         $x("//*[text()=\"Необходимо подтверждение\"]").should(Condition.visible, Duration.ofSeconds(15));
         $x("//*[text()=\"У вас уже запланирована встреча на другую дату. Перепланировать?\"]").should(Condition.visible, Duration.ofSeconds(15));
         $x("//*[text()=\"Перепланировать\"]").click();
-        $("[placeholder=\"Дата встречи\"]").doubleClick().sendKeys(Keys.DELETE);
-        $("[placeholder=\"Дата встречи\"]").setValue(secondMeetingDate);
         $x("//*[text()=\"Успешно!\"]").should(Condition.visible, Duration.ofSeconds(15));
         $x("//*[text()=\"Встреча успешно запланирована на \"]").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(15));
     }
